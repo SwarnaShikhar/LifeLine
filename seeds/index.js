@@ -20,6 +20,7 @@ const seedDB = async()=>{
     for(let i=0; i<10; i++){
         const random10 = Math.floor(Math.random()*10);
         const plasma = new PlasmaLink({
+            author:'644fd46768e3fb06ef84e97c',
             name:`${datas[random10].name}`,
             group:`${datas[random10].group}`,
             location:`${datas[random10].location}`
