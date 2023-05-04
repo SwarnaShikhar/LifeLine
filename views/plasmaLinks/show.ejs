@@ -1,12 +1,27 @@
 <% layout('layouts/boilerplate') %>
     <h1>
-        <%= plasmaLink.name %>
+      Name:  <%= plasmaLink.name %>
     </h1>
     <h2>
-        <%= plasmaLink.location %>
+       Location: <%= plasmaLink.location %>
     </h2>
     <h2>
-        Submitted by <%= plasmaLink.author.username %>
+       Blood Group is: <%= plasmaLink.bloodGroup %>
+     </h2>
+     <h2>
+        Phone Number: <%= plasmaLink.phoneNo %>
+     </h2>
+     <h2>
+        Age is: <%= plasmaLink.age %>
+     </h2>
+     <h2>
+        Aadhar Number is: <%= plasmaLink.AadharNo %>
+     </h2>
+     <h2>
+        District Name: <%= plasmaLink.DistrictName %>
+     </h2>
+    <h2>
+        Submitted by-><%= plasmaLink.author.username %>
     </h2>
     <% if(currentUser && plasmaLink.author.equals(currentUser._id)){ %>
         <div>

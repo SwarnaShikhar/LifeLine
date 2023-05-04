@@ -3,32 +3,36 @@ const PlasmaLink = require("../models/plasmaLink");
 const datas = require('./data');
 
 
-mongoose.connect('mongodb://localhost:27017/plasma-link',{
+mongoose.connect('mongodb://localhost:27017/plasma-link', {
     // useNewUrl:true,
     // useCreateIndex:true,
-    useUnifiedtopology:true
+    useUnifiedtopology: true
 });
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error: "));
-db.once("open", ()=>{
+db.once("open", () => {
     console.log("Database connected");
 });
 
-const seedDB = async()=>{
+const seedDB = async () => {
     await PlasmaLink.deleteMany({});
-    for(let i=0; i<10; i++){
-        const random10 = Math.floor(Math.random()*10);
+    for (let i = 0; i < 10; i++) {
+        const random10 = Math.floor(Math.random() * 10);
         const plasma = new PlasmaLink({
-            author:'644fd46768e3fb06ef84e97c',
-            name:`${datas[random10].name}`,
-            group:`${datas[random10].group}`,
-            location:`${datas[random10].location}`
+            author: '644fd46768e3fb06ef84e97c',
+            name: `${datas[random10].name}`,
+            bloodGroup: `${datas[random10].bloodGroup}`,
+            location: `${datas[random10].location}`,
+            phoneNo: `${datas[random10].phoneNo}`,
+            age: `${datas[random10].age}`,
+            AadharNo: `${datas[random10].AadharNo}`,
+            DistrictName: `${datas[random10].DistrictName}`
         })
         await plasma.save();
     }
 }
 
-seedDB().then(()=>{
+seedDB().then(() => {
     mongoose.connection.close();
 })

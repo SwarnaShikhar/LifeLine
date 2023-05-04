@@ -22,7 +22,7 @@ router.post('/', isLoggedIn, async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     const plasmaLink = await PlasmaLink.findById(req.params.id).populate('author');
-    console.log(plasmaLink);
+    // console.log(plasmaLink);
     res.render('plasmaLinks/show', { plasmaLink });
 })
 
