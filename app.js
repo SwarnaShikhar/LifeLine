@@ -62,15 +62,11 @@ app.use((req, res, next) => {
 
 
 app.use('/',userRoutes);
-app.use('/plasmaLinks', plasmalinkRoutes)
+app.use('/', plasmalinkRoutes)
 
 app.get('/', (req, res) => {
     res.render('home')
 })
-
-
-
-
 
 
 app.listen(3000, () => {

@@ -1,0 +1,152 @@
+<div id="customAlertBox" class="custom-alert">
+  <div class="custom-alert-content">
+    <span id="customAlertMessage"></span>
+    <input type="text" id="aadharInput" placeholder="Enter Aadhar number">
+    <button id="customAlertButton">Verify</button>
+  </div>
+</div>
+
+
+<script>
+  // Function to display the custom alert box
+function customAlert(message, callback) {
+  // Set the alert message
+  document.getElementById('customAlertMessage').textContent = message;
+
+  // Show the custom alert box
+  document.getElementById('customAlertBox').style.display = 'flex';
+
+  // Add an event listener to the Verify button
+  document.getElementById('customAlertButton').addEventListener('click', function() {
+    // Get the entered Aadhar number
+    var aadharInput = document.getElementById('aadharInput').value;
+
+    // Verify the entered Aadhar number
+    var isValidAadhar = /^\d{12}$/.test(aadharInput);
+
+    if (isValidAadhar) {
+      // Hide the custom alert box
+      document.getElementById('customAlertBox').style.display = 'none';
+
+      // Invoke the callback function, if provided
+      if (typeof callback === 'function') {
+        callback();
+      }
+    } else {
+      // Show an error message if the Aadhar number is invalid
+      alert('Invalid Aadhar number. Please try again.');
+    }
+  });
+}
+
+// Function to show the page's content
+function showContent() {
+  // Display the content of your page here
+  alert('Access granted! You can now view the page\'s content.');
+}
+
+// Example usage:
+customAlert('Please enter your Aadhar number to access the page.', showContent);
+
+</script>
+
+<style>
+.custom-alert {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-alert-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.custom-alert-content #customAlertMessage {
+  display: block;
+  margin-bottom: 15px;
+}
+
+.custom-alert-content #aadharInput {
+  margin-bottom: 15px;
+  padding: 5px;
+}
+
+.custom-alert-content #customAlertButton {
+  padding: 5px 15px;
+}
+
+</style>
+
+<h1>Emergency Pole</h1>
+
+<form action="/plasmaLinks/needy/emergencyPole" method="POST">
+    <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="emergencyPole[name]">
+    </div>
+    <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="emergencyPole[email]">
+    </div>
+    <div>
+        <label for="contactNo">Contact No</label>
+        <input type="text" id="contactNo" name="emergencyPole[contactNo]">
+    </div>
+    <div>
+        <label for="district">District</label>
+        <select input type="text" id="district" name="emergencyPole[district]" required>
+          <option value="" disabled selected>Select a district</option>
+          <option value="Alipurduar">Alipurduar</option>
+          <option value="Bankura">Bankura</option>
+          <option value="Birbhum">Birbhum</option>
+          <option value="Cooch Behar">Cooch Behar</option>
+          <option value="Darjeeling">Darjeeling</option>
+          <option value="East Bardhaman">East Bardhaman</option>
+          <option value="Hooghly">Hooghly</option>
+          <option value="Howrah">Howrah</option>
+          <option value="Jalpaiguri">Jalpaiguri</option>
+          <option value="Jhargram">Jhargram</option>
+          <option value="Kalimpong">Kalimpong</option>
+          <option value="Kolkata">Kolkata</option>
+          <option value="Malda">Malda</option>
+          <option value="Murshidabad">Murshidabad</option>
+          <option value="Nadia">Nadia</option>
+          <option value="North 24 Parganas">North 24 Parganas</option>
+          <option value="Paschim Bardhaman">Paschim Bardhaman</option>
+          <option value="Paschim Medinipur">Paschim Medinipur</option>
+          <option value="Purba Medinipur">Purba Medinipur</option>
+          <option value="Purulia">Purulia</option>
+          <option value="South 24 Parganas">South 24 Parganas</option>
+          <option value="Uttar Dinajpur">Uttar Dinajpur</option>
+          <option value="Other">Other</option>
+        </select>
+        <!-- <input type="text" id="district" name="emergencyPole[district]"> -->
+    </div>
+    <div>
+        <label for="location">Location</label>
+        <input type="text" id="location" name="emergencyPole[location]">
+    </div>
+    <div>
+        <label for="need">Need with in</label>
+        <input type="text" id="need" name="emergencyPole[need]">
+    </div>
+    <div>
+        <label for="reason">Reason behind need</label>
+        <input type="text" id="reason" name="emergencyPole[reason]">
+    </div>
+    <div>
+        <label for="needFor">Supported Medical Team</label>
+        <input type="text" id="needFor" name="emergencyPole[needFor]">
+    </div>
+    <button>Add Data</button>
+</form>

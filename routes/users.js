@@ -14,7 +14,7 @@ router.post('/register', async (req, res, next) => {
     req.login(registeredUser, err=>{
         if(err) return next(err);
         req.flash('success', 'Welcome to Plasma Link!!!');
-        res.redirect('/plasmaLinks');
+        res.redirect('/welcome');
     })
 })
 
@@ -30,8 +30,8 @@ router.post('/login',
     // Now we can use res.locals.returnTo to redirect the user after login
     (req, res) => {
         req.flash('success', 'Welcome back!');
-        const redirectUrl = res.locals.returnTo || '/plasmaLinks'; // update this line to use res.locals.returnTo now
-        res.redirect(redirectUrl);
+        // const redirectUrl = res.locals.returnTo || '/plasmaLinks'; // update this line to use res.locals.returnTo now
+        res.redirect('/welcome');
     });
 
 router.get('/logout', (req, res,next) => {
