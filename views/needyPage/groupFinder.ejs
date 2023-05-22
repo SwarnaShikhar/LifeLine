@@ -87,61 +87,100 @@
   
   </style>
 
-<h1>Group Finder</h1>
-
+  <!DOCTYPE html>
+<html>
 <head>
-  <title>Button Example</title>
   <style>
-    .data-list {
-      display: none;
+    /* CSS styling for the buttons */
+    .blood-group-button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    /* CSS styling for the table */
+    #blood-group-table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    #blood-group-table th,
+    #blood-group-table td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    #blood-group-table th {
+      background-color: #f2f2f2;
     }
   </style>
-  <script>
-    var query = ""; // Global variable to store the query
-
-    function showData(buttonId, bloodGroup) {
-      // Hide all buttons
-      var buttons = document.getElementsByClassName("button");
-      for (var i = 0; i < buttons.length; i++) {
-        buttons[i].style.display = "none";
-      }
-
-      // Show the data list
-      var dataList = document.getElementById("data-list-" + buttonId);
-      dataList.style.display = "block";
-
-      // Update the query
-      query = bloodGroup;
-
-      // Perform an action with the query (e.g., display in console)
-      console.log("Query: " + query);
-    }
-  </script>
 </head>
 <body>
-  <button class="button" onclick="showData(1, 'A+')">A+</button>
-  <button class="button" onclick="showData(2, 'B+')">B+</button>
-  <button class="button" onclick="showData(3, 'O+')">O+</button>
-  <button class="button" onclick="showData(4, 'AB+')">AB+</button>
-  <button class="button" onclick="showData(5, 'A-')">A-</button>
-  <button class="button" onclick="showData(6, 'B-')">B-</button>
+  <h1>Blood Group Filter</h1>
+  <div id="blood-group-buttons">
+    <button class="blood-group-button" onclick="fetchData('A Positive')">Blood Group A</button>
+    <button class="blood-group-button" onclick="fetchData('B Positive')">Blood Group B</button>
+    <button class="blood-group-button" onclick="fetchData('AB Positive')">Blood Group AB</button>
+    <button class="blood-group-button" onclick="fetchData('O Positive')">Blood Group O</button>
+  </div>
 
-  <ul id="data-list-1" class="data-list">
-    <li>Data for A+</li>
-  </ul>
-  <ul id="data-list-2" class="data-list">
-    <li>Data for B+</li>
-  </ul>
-  <ul id="data-list-3" class="data-list">
-    <li>Data for O+</li>
-  </ul>
-  <ul id="data-list-4" class="data-list">
-    <li>Data for AB+</li>
-  </ul>
-  <ul id="data-list-5" class="data-list">
-    <li>Data for A-</li>
-  </ul>
-  <ul id="data-list-6" class="data-list">
-    <li>Data for B-</li>
-  </ul>
+  <table id="blood-group-table" style="display: none;"></table>
+
+  <script>
+    function fetchData(bloodGroup) {
+      // Replace 'API_ENDPOINT' with the actual URL of your API
+      const apiEndpoint = 'http://localhost:3000/plasmaLinksData/';
+
+      // Append the blood group as a query parameter to the API endpoint
+      const url = apiEndpoint + '?bloodGroup=' + bloodGroup;
+
+      // Make a GET request to the API using fetch()
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          // Hide the buttons
+          document.getElementById('blood-group-buttons').style.display = 'none';
+
+          // Create and populate the table
+          const table = document.getElementById('blood-group-table');
+
+          // Clear any existing rows in the table
+          while (table.firstChild) {
+            table.removeChild(table.firstChild);
+          }
+
+          // Create the table header row
+          const headerRow = document.createElement('tr');
+          const headers = ['Name', 'Phone Number', 'Location']; // Example column names
+          headers.forEach(headerText => {
+            const header = document.createElement('th');
+            header.textContent = headerText;
+            headerRow.appendChild(header);
+          });
+          table.appendChild(headerRow);
+
+          // Create a row for each data entry and populate the columns
+          data.forEach(entry => {
+            const row = document.createElement('tr');
+            const columns = ['name', 'phoneNo', 'location']; // Corresponding data keys
+            columns.forEach(column => {
+              const cell = document.createElement('td');
+              cell.textContent = entry[column];
+              row.appendChild(cell);
+            });
+            table.appendChild(row);
+          });
+
+          // Display the table
+          table.style.display = 'table';
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          // Handle error scenarios here
+        });
+    }
+  </script>
 </body>
+</html>

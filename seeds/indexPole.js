@@ -17,18 +17,18 @@ db.once("open", () => {
 
 const seedDB = async () => {
     await EmergencyPole.deleteMany({});
-    for (let i = 0; i < 10; i++) {
-        const random10 = Math.floor(Math.random() * 10);
+    for (let i = 0; i < 20; i++) {
+        const random20 = Math.floor(Math.random() * 20);
         const pol = new EmergencyPole({
             // author: '644fd46768e3fb06ef84e97c',
-            name: `${pole[random10].name}`,
-            email: `${pole[random10].email}`,
-            contactNo: `${pole[random10].contactNo}`,
-            district: `${pole[random10].district}`,
-            location: `${pole[random10].location}`,
-            needWithIn: `${pole[random10].needWithIn}`,
-            reason: `${pole[random10].reason}`,
-            needFor: `${pole[random10].needFor  }`
+            name: `${pole[random20].name}`,
+            email: `${pole[random20].email}`,
+            contactNo: `${pole[random20].contactNo}`,
+            district: `${pole[random20].district}`,
+            location: `${pole[random20].location}`,
+            needWithIn: `${pole[random20].needWithIn}`,
+            reason: `${pole[random20].reason}`,
+            needFor: `${pole[random20].needFor  }`
         })
         await pol.save();
     }

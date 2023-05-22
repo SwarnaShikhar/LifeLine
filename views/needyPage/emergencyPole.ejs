@@ -145,8 +145,13 @@ customAlert('Please enter your Aadhar number to access the page.', showContent);
         <input type="text" id="reason" name="emergencyPole[reason]">
     </div>
     <div>
-        <label for="needFor">Supported Medical Team</label>
-        <input type="text" id="needFor" name="emergencyPole[needFor]">
+        <label for="needFor">Need For</label>
+        <!-- <input type="text" id="needFor" name="emergencyPole[needFor]"> -->
+        <select input type="text" name="" id="need" name="emergencyPole[needFor]" required>
+          <option value="" disabled selected>Select an Option</option>
+          <option value="My Self">My Self</option>
+          <option value="Other">Other</option>
+        </select>
     </div>
     <button>Add Data</button>
 </form>

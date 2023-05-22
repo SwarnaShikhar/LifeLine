@@ -5,8 +5,12 @@ const donarDriveSchema = new Schema({
     name:String,
     conductedBy:String,
     contactNo:String,
-    date:String,
+    date:{
+        type:Date,
+        default:Date.now()
+    },
     location:String,
+    district:String,
     supportedMedicalTeam:String,
     contactNoMedicalTeam:String,
     description:String,

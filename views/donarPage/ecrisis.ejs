@@ -1,1 +1,126 @@
-<h1>Emergency crisis(ecrisis)</h1>
+<% layout('layouts/boilerplate') %>
+
+  <h1>Emergency crisis(ecrisis)</h1>
+
+  <style>
+    .popup {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .popup-content {
+      background-color: #fefefe;
+      margin: 20% auto;
+      /* Adjust this line to shift the popup window */
+      padding: 20px;
+      width: 200px;
+      text-align: center;
+    }
+
+    .sort-option {
+      width: 100%;
+      text-align: center;
+      padding: 8px 0;
+      border: none;
+      background-color: inherit;
+      cursor: pointer;
+    }
+
+    .sort-option:hover {
+      background-color: #ddd;
+    }
+  </style>
+
+  <table class="table table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Location</th>
+        <th scope="col">District</th>
+        <th scope="col">
+          Duration (in days)
+          <button id="sort_duration_btn" onclick="openSortPopup()">Sort</button>
+        </th>
+      </tr>
+    </thead>
+    <tbody id="table_body">
+
+    </tbody>
+  </table>
+
+  <div id="sort_popup" class="popup">
+    <div class="popup-content">
+      <button class="sort-option" onclick="sortData('asc')">Short to Long</button>
+      <button class="sort-option" onclick="sortData('desc')">Long to Short</button>
+    </div>
+  </div>
+
+  <script>
+    let objectData = [];
+
+    fetch('http://localhost:3000/plasmaLinks/needy/emergencypoleData')
+      .then((data) => data.json())
+      .then((fetchedData) => {
+        objectData = fetchedData;
+
+        let tableData = "";
+        objectData.forEach((values) => {
+          tableData += `<tr>
+                      <td>${values.name}</td>
+                      <td>${values.contactNo}</td>
+                      <td>${values.location}</td>
+                      <td>${values.district}</td>
+                      <td>${values.needWithIn}</td>
+                  </tr>`;
+        });
+        document.getElementById('table_body').innerHTML = tableData;
+      })
+      .catch((error) => {
+        console.log('Error:', error);
+      });
+
+    function openSortPopup() {
+      const popup = document.getElementById('sort_popup');
+      popup.style.display = 'block';
+    }
+
+    function closeSortPopup() {
+      const popup = document.getElementById('sort_popup');
+      popup.style.display = 'none';
+    }
+
+    function sortData(option) {
+      closeSortPopup();
+
+      objectData.sort((a, b) => {
+        const durationA = parseInt(a.needWithIn);
+        const durationB = parseInt(b.needWithIn);
+
+        if (option === 'asc') {
+          return durationA - durationB; // Short to Long
+        } else {
+          return durationB - durationA; // Long to Short
+        }
+      });
+
+      let sortedTableData = "";
+      objectData.forEach((values) => {
+        sortedTableData += `<tr>
+                  <td>${values.name}</td>
+                  <td>${values.contactNo}</td>
+                  <td>${values.location}</td>
+                  <td>${values.district}</td>
+                  <td>${values.needWithIn}</td>
+              </tr>`;
+      });
+      document.getElementById('table_body').innerHTML = sortedTableData;
+    }
+  </script>

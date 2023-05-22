@@ -1,3 +1,5 @@
+<h1>Blood Pool</h1>
+
 <div id="customAlertBox" class="custom-alert">
     <div class="custom-alert-content">
       <span id="customAlertMessage"></span>
@@ -88,9 +90,35 @@
   </style>
 
 
+<table class="table table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Phone Number</th>
+      <th scope="col">Location</th>
+      <th scope="col">District</th>
+    </tr>
+  </thead>
+  <tbody id="table_body">
+    
+  </tbody>
+</table>
 
+<script>
+  fetch('http://localhost:3000/plasmaLinksData').then((data)=>{
+      return data.json();
+  }).then((objectData)=>{
+      console.log(objectData[0].name);
 
-
-
-
-<h1>Blood Pool</h1>
+      let tableData = "";
+      objectData.map((values)=>{
+          tableData+=`<tr>
+      <td>${values.name}</td>
+      <td>${values.phoneNo}</td>
+      <td>${values.location}</td>
+      <td>${values.DistrictName}</td>
+    </tr>`;
+      });
+      document.getElementById('table_body').innerHTML=tableData;
+  })
+</script>

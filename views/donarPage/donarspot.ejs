@@ -1,9 +1,98 @@
+<% layout('layouts/boilerplate') %>
+
 <h1>Donar Spot</h1>
 
-<ul>
-    <% for(let donarSpot of donarSpots) {%>
-        <li><%= donarSpot.name %></li>
-        <li><%= donarSpot.contactNo %></li>
-        <li><%= donarSpot.location %></li>
-        <% } %>
-</ul>
+  <select id="filter_select">
+    <option value="">All Districts</option>
+    <option value="Alipurduar">Alipurduar</option>
+    <option value="Bankura">Bankura</option>
+    <option value="Birbhum">Birbhum</option>
+    <option value="Cooch Behar">Cooch Behar</option>
+    <option value="Darjeeling">Darjeeling</option>
+    <option value="East Bardhaman">East Bardhaman</option>
+    <option value="Hooghly">Hooghly</option>
+    <option value="Howrah">Howrah</option>
+    <option value="Jalpaiguri">Jalpaiguri</option>
+    <option value="Jhargram">Jhargram</option>
+    <option value="Kalimpong">Kalimpong</option>
+    <option value="Kolkata">Kolkata</option>
+    <option value="Malda">Malda</option>
+    <option value="Murshidabad">Murshidabad</option>
+    <option value="Nadia">Nadia</option>
+    <option value="North 24 Parganas">North 24 Parganas</option>
+    <option value="Paschim Bardhaman">Paschim Bardhaman</option>
+    <option value="Purba Bardhaman">Purba Bardhaman</option>
+    <option value="Purba Medinipur">Purba Medinipur</option>
+    <option value="Purulia">Purulia</option>
+    <option value="South 24 Parganas">South 24 Parganas</option>
+    <option value="Uttar Dinajpur">Uttar Dinajpur</option>
+  </select>
+  <button onclick="filterData()">Filter</button>
+
+  <table class="table table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th>Name</th>
+        <th>Conducted By</th>
+        <th>Contact No</th>
+        <th>Location</th>
+        <th>District</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody id="table_body">
+    </tbody>
+  </table>
+
+
+
+  <script>
+   let objectData = []; // Stores the original data fetched from the API
+
+fetch('http://localhost:3000/plasmaLinks/donar/donarDriveData')
+  .then((data) => {
+    return data.json();
+  })
+  .then((fetchedData) => {
+    objectData = fetchedData; // Store the fetched data in the objectData variable
+
+    // Display the original data on the table
+    displayData(objectData);
+  })
+  .catch((error) => {
+    console.log('Error:', error);
+  });
+
+function displayData(data) {
+  let tableData = "";
+  data.map((values) => {
+    tableData += `<tr>
+        <td>${values.name}</td>
+        <td>${values.conductedBy}</td>
+        <td>${values.contactNo}</td>
+        <td>${values.location}</td>
+        <td>${values.district}</td>
+        <td>${values.description}</td>
+      </tr>`;
+  });
+  document.getElementById('table_body').innerHTML = tableData;
+}
+
+function filterData() {
+  const filterValue = document.getElementById('filter_select').value;
+
+  // Filter the data based on the selected district
+  let filteredData;
+  if (filterValue === "") {
+    filteredData = objectData; // If "All Districts" is selected, show all data
+  } else {
+    filteredData = objectData.filter((values) => {
+      return values.district === filterValue;
+    });
+  }
+
+  // Display the filtered data on the table
+  displayData(filteredData);
+}
+
+  </script>

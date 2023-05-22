@@ -17,17 +17,17 @@ db.once("open", () => {
 
 const seedDB = async () => {
     await PlasmaLink.deleteMany({});
-    for (let i = 0; i < 10; i++) {
-        const random10 = Math.floor(Math.random() * 10);
+    for (let i = 0; i < 20; i++) {
+        const random20 = Math.floor(Math.random() * 20);
         const plasma = new PlasmaLink({
             author: '644fd46768e3fb06ef84e97c',
-            name: `${datas[random10].name}`,
-            bloodGroup: `${datas[random10].bloodGroup}`,
-            location: `${datas[random10].location}`,
-            phoneNo: `${datas[random10].phoneNo}`,
-            age: `${datas[random10].age}`,
-            AadharNo: `${datas[random10].AadharNo}`,
-            DistrictName: `${datas[random10].DistrictName}`
+            name: `${datas[random20].name}`,
+            bloodGroup: `${datas[random20].bloodGroup}`,
+            location: `${datas[random20].location}`,
+            phoneNo: `${datas[random20].phoneNo}`,
+            age: `${datas[random20].age}`,
+            AadharNo: `${datas[random20].AadharNo}`,
+            DistrictName: `${datas[random20].DistrictName}`
         })
         await plasma.save();
     }

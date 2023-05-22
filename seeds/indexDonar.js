@@ -17,18 +17,19 @@ db.once("open", () => {
 
 const seedDB = async () => {
     await DonorDrive.deleteMany({});
-    for (let i = 0; i < 10; i++) {
-        const random10 = Math.floor(Math.random() * 10);
+    for (let i = 0; i < 20; i++) {
+        const random20 = Math.floor(Math.random() * 20);
         const don = new DonorDrive({
             // author: '644fd46768e3fb06ef84e97c',
-            name: `${donar[random10].name}`,
-            conductedBy: `${donar[random10].conductedBy}`,
-            location: `${donar[random10].location}`,
-            contactNo: `${donar[random10].contactNo}`,
-            date: `${donar[random10].date}`,
-            supportedMedicalTeam: `${donar[random10].supportedMedicalTeam}`,
-            contactNoMedicalTeam: `${donar[random10].contactNoMedicalTeam}`,
-            description:`${donar[random10].description}`
+            name: `${donar[random20].name}`,
+            conductedBy: `${donar[random20].conductedBy}`,
+            location: `${donar[random20].location}`,
+            district: `${donar[random20].district}`,
+            contactNo: `${donar[random20].contactNo}`,
+            date: `${donar[random20].date}`,
+            supportedMedicalTeam: `${donar[random20].supportedMedicalTeam}`,
+            contactNoMedicalTeam: `${donar[random20].contactNoMedicalTeam}`,
+            description:`${donar[random20].description}`
         })
         await don.save();
     }
