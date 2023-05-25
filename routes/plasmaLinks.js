@@ -2,8 +2,13 @@ const express = require('express');
 const router = express.Router();
 const PlasmaLink = require("../models/plasmaLink");
 const DonarDrive = require('../models/donarDrive');
+const catchAsync = require('../utils/catchAsync');
+const ExpressError = require('../utils/ExpressError');
 const EmergencyPole = require('../models/emergencyPole');
-const { isLoggedIn, isAuthor } = require('../middleware');
+const { isLoggedIn, isAuthor, validatePlasmaLink } = require('../middleware');
+
+
+
 
 
 router.get('/welcome', (req, res) => {
@@ -19,15 +24,13 @@ router.get('/plasmaLinks/new', isLoggedIn, (req, res) => {
     res.render('plasmaLinks/new')
 })
 
-router.post('/plasmaLinks', isLoggedIn, async (req, res) => {
+router.post('/plasmaLinks', validatePlasmaLink, isLoggedIn, catchAsync(async (req, res) => {
     const plasmaLink = new PlasmaLink(req.body.plasmaLink);
     plasmaLink.author = req.user._id;
     await plasmaLink.save();
     req.flash('success', 'Successfully added new data')
-    // res.redirect(`/plasmaLinks/${plasmaLink._id}`)
     res.redirect('/plasmaLinks/donar')
-})
-
+}))
 
 
 
@@ -95,7 +98,7 @@ router.post('/plasmaLinks/donar/donarDrive', async (req, res) => {
 
 router.get('/plasmaLinksData', async (req, res) => {
     const plasmaLinks = await PlasmaLink.find(req.query)
-    res.send(plasmaLinks); 
+    res.send(plasmaLinks);
 })
 
 router.get('/plasmaLinks/donar/donarDriveData', async (req, res) => {
@@ -184,6 +187,18 @@ router.delete('/plasmaLinks/:id', isLoggedIn, isAuthor, async (req, res) => {
     req.flash('success', 'Successfully deleted data')
     res.redirect('/plasmaLinks/');
 })
+
+router.all('*', (req, res, next) => {
+    // res.send("404!!!")
+    next(new ExpressError('Page Not Found', 404))
+})
+
+router.use((err, req, res, next) => {
+    const { statusCode = 500 } = err;
+    if (!err.message) err.message = 'Oh No, Something went wrong!!'
+    res.status(statusCode).render('error', { err })
+})
+
 
 module.exports = router;
 

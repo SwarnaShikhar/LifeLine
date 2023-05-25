@@ -1,32 +1,55 @@
 <% layout('layouts/boilerplate') %>
-    <form action="/plasmaLinks" method="POST">
+    <form action="/plasmaLinks" method="POST" novalidate class="needs-validation">
         <div>
             <label for="name">Name</label>
-            <input type="text" id="name" name="plasmaLink[name]">
+            <input type="text" id="name" name="plasmaLink[name]" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
         </div>
         <div>
             <label for="name">Location</label>
-            <input type="text" id="location" name="plasmaLink[location]">
+            <input type="text" id="location" name="plasmaLink[location]" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
         </div>
         <div>
             <label for="phoneNo">Phone No</label>
-            <input type="text" id="phoneNo" name="plasmaLink[phoneNo]">
+            <input type="text" id="phoneNo" name="plasmaLink[phoneNo]" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
         </div>
         <div>
             <label for="bloodGroup">Blood group</label>
-            <input type="text" id="bloodgroup" name="plasmaLink[bloodGroup]">
+            <input type="text" id="bloodgroup" name="plasmaLink[bloodGroup]" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
         </div>
         <div>
             <label for="AadharNo">Aadhar No</label>
-            <input type="text" id="AadharNo" name="plasmaLink[AadharNo]">
+            <input type="text" id="AadharNo" name="plasmaLink[AadharNo]" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
         </div>
         <div>
             <label for="DistrictName">District Name</label>
-            <input type="text" id="DistrictName" name="plasmaLink[DistrictName]">
+            <input type="text" id="DistrictName" name="plasmaLink[DistrictName]" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
         </div>
         <div>
             <label for="age">Age</label>
-            <input type="age" id="age" name="plasmaLink[age]">
+            <input type="age" id="age" name="plasmaLink[age]" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
         </div>
         <button>Add Data</button>
     </form>
+
+    

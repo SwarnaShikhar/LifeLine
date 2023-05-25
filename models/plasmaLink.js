@@ -6,7 +6,7 @@ const PlasmaLinkSchema = new Schema({
     bloodGroup:String,  // price
     location:String,
     phoneNo:String,
-    age:String,
+    age:Number,
     AadharNo:String,
     DistrictName:String,
     author:{
