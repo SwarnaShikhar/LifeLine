@@ -5,9 +5,9 @@ const PlasmaLinkSchema = new Schema({
     name:String,  // title
     bloodGroup:String,  // price
     location:String,
-    phoneNo:String,
+    phoneNo:Number,
     age:Number,
-    AadharNo:String,
+    AadharNo:Number,
     DistrictName:String,
     author:{
         type:Schema.Types.ObjectId,

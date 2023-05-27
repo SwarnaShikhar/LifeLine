@@ -5,11 +5,14 @@ const DonarDrive = require('../models/donarDrive');
 const catchAsync = require('../utils/catchAsync');
 const ExpressError = require('../utils/ExpressError');
 const EmergencyPole = require('../models/emergencyPole');
-const { isLoggedIn, isAuthor, validatePlasmaLink } = require('../middleware');
+const { isLoggedIn, isAuthor, validatePlasmaLink, donarDriveSchema, emergencyPoleSchema } = require('../middleware');
+const Joi = require('joi');
 
 
 
-
+router.get('/', (req, res) => {
+    res.render('plasmaLinks/home')
+})
 
 router.get('/welcome', (req, res) => {
     res.render('plasmaLinks/welcome')
@@ -81,14 +84,14 @@ router.get('/plasmaLinks/donar/donarDrive', async (req, res) => {
     res.render('donarPage/donarDrive')
 })
 
-router.post('/plasmaLinks/donar/donarDrive', async (req, res) => {
+router.post('/plasmaLinks/donar/donarDrive',donarDriveSchema, catchAsync(async (req, res) => {
     const donarDrive = new DonarDrive(req.body.donarDrive);
     // plasmaLink.author = req.user._id;
     await donarDrive.save();
     req.flash('success', 'Your application has been submitted successfully ! You can go ahead with your noble motive')
     // res.redirect(`/plasmaLinks/${plasmaLink._id}`)
     res.redirect('/plasmaLinks/donar')
-})
+}))
 // End of Donar Page routes
 //////////////////////////////////////////////////////////////////////
 
@@ -134,11 +137,11 @@ router.get('/plasmaLinks/needy/emergencyPole', (req, res) => {
     res.render('needyPage/emergencyPole')
 })
 
-router.post('/plasmaLinks/needy/emergencyPole', async (req, res) => {
+router.post('/plasmaLinks/needy/emergencyPole',emergencyPoleSchema, catchAsync(async (req, res) => {
     const emergencyPole = new EmergencyPole(req.body.emergencyPole);
     await emergencyPole.save();
     res.redirect('/plasmaLinks/needy')
-})
+}))
 
 router.get('/plasmaLinks/needy/bloodPool', (req, res) => {
     res.render('needyPage/bloodPool')

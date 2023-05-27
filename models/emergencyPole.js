@@ -1,3 +1,4 @@
+const { number } = require('joi');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -7,10 +8,10 @@ const emergencyPoleSchema = new Schema({
         required:true
     },
     email:String,
-    contactNo:String,
+    contactNo:Number,
     district:String,
     location:String,
-    needWithIn:String,
+    needWithIn:Number,
     reason:String,
     needFor:String
 })

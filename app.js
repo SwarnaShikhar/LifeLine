@@ -64,10 +64,6 @@ app.use((req, res, next) => {
 app.use('/',userRoutes);
 app.use('/', plasmalinkRoutes)
 
-app.get('/', (req, res) => {
-    res.render('home')
-})
-
 
 app.listen(3000, () => {
     console.log("App is Listening on Port 3000!!!")
