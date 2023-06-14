@@ -6,6 +6,9 @@ const catchAsync = require('../utils/catchAsync');
 const ExpressError = require('../utils/ExpressError');
 const EmergencyPole = require('../models/emergencyPole');
 const { isLoggedIn, isAuthor, validatePlasmaLink, donarDriveSchema, emergencyPoleSchema } = require('../middleware');
+const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
+const mapBoxToken = 'pk.eyJ1Ijoic3dhcm5hNDAzIiwiYSI6ImNsaHl6Mmh1NjE4bjYzaXFhYTdreDIyZGoifQ.NFzAM7uKPFVOx4LS8Nor0A';
+const geocoder = mbxGeocoding({accessToken:mapBoxToken})
 const Joi = require('joi');
 
 
@@ -138,8 +141,14 @@ router.get('/plasmaLinks/needy/emergencyPole', (req, res) => {
 })
 
 router.post('/plasmaLinks/needy/emergencyPole',emergencyPoleSchema, catchAsync(async (req, res) => {
+    const geoData = await geocoder.forwardGeocode({
+        query:req.body.emergencyPole.location,
+        limit:1
+    }).send()
     const emergencyPole = new EmergencyPole(req.body.emergencyPole);
+    emergencyPole.geometry = geoData.body.features[0].geometry;
     await emergencyPole.save();
+    console.log(emergencyPole);
     res.redirect('/plasmaLinks/needy')
 }))
 
@@ -190,6 +199,11 @@ router.delete('/plasmaLinks/:id', isLoggedIn, isAuthor, async (req, res) => {
     req.flash('success', 'Successfully deleted data')
     res.redirect('/plasmaLinks/');
 })
+
+
+
+///////////Error Handeling///////////
+
 
 router.all('*', (req, res, next) => {
     // res.send("404!!!")

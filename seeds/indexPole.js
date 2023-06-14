@@ -25,6 +25,10 @@ const seedDB = async () => {
             email: `${pole[random20].email}`,
             contactNo: `${pole[random20].contactNo}`,
             district: `${pole[random20].district}`,
+            geometry:{
+                type:"Point",
+                coordinates:[pole[random20].geometry.coordinates[1],pole[random20].geometry.coordinates[0]]
+            },
             location: `${pole[random20].location}`,
             needWithIn: `${pole[random20].needWithIn}`,
             reason: `${pole[random20].reason}`,

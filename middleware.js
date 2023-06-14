@@ -60,7 +60,7 @@ module.exports.emergencyPoleSchema = (req, res, next) => {
             email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }),
             contactNo:Joi.number().min(10).required(),
             district:Joi.string().required(),
-            location:Joi.string().alphanum().min(5).required(),
+            location:Joi.string().min(5).required(),
             needWithIn:Joi.number().min(1).required(7),
             reason:Joi.string().min(10).required(),
             needFor:Joi.string(),

@@ -1,35 +1,36 @@
+<% layout('layouts/boilerplate') %>
 <h1>Blood Pool</h1>
 
-<div id="customAlertBox" class="custom-alert">
-    <div class="custom-alert-content">
-      <span id="customAlertMessage"></span>
-      <input type="text" id="aadharInput" placeholder="Enter Aadhar number">
-      <button id="customAlertButton">Verify</button>
-    </div>
+<!-- <div id="customAlertBox" class="custom-alert">
+  <div class="custom-alert-content">
+    <span id="customAlertMessage"></span>
+    <input type="text" id="aadharInput" placeholder="Enter Aadhar number">
+    <button id="customAlertButton">Verify</button>
   </div>
-  
-  
-  <script>
-    // Function to display the custom alert box
+</div> -->
+
+
+<!-- <script>
+  // Function to display the custom alert box
   function customAlert(message, callback) {
     // Set the alert message
     document.getElementById('customAlertMessage').textContent = message;
-  
+
     // Show the custom alert box
     document.getElementById('customAlertBox').style.display = 'flex';
-  
+
     // Add an event listener to the Verify button
-    document.getElementById('customAlertButton').addEventListener('click', function() {
+    document.getElementById('customAlertButton').addEventListener('click', function () {
       // Get the entered Aadhar number
       var aadharInput = document.getElementById('aadharInput').value;
-  
+
       // Verify the entered Aadhar number
       var isValidAadhar = /^\d{12}$/.test(aadharInput);
-  
+
       if (isValidAadhar) {
         // Hide the custom alert box
         document.getElementById('customAlertBox').style.display = 'none';
-  
+
         // Invoke the callback function, if provided
         if (typeof callback === 'function') {
           callback();
@@ -40,19 +41,19 @@
       }
     });
   }
-  
+
   // Function to show the page's content
   function showContent() {
     // Display the content of your page here
     alert('Access granted! You can now view the page\'s content.');
   }
-  
+
   // Example usage:
   customAlert('Please enter your Aadhar number to access the page.', showContent);
-  
-  </script>
-  
-  <style>
+
+</script>
+
+<style>
   .custom-alert {
     display: none;
     position: fixed;
@@ -65,29 +66,28 @@
     align-items: center;
     justify-content: center;
   }
-  
+
   .custom-alert-content {
     background-color: white;
     padding: 20px;
     border-radius: 5px;
     text-align: center;
   }
-  
+
   .custom-alert-content #customAlertMessage {
     display: block;
     margin-bottom: 15px;
   }
-  
+
   .custom-alert-content #aadharInput {
     margin-bottom: 15px;
     padding: 5px;
   }
-  
+
   .custom-alert-content #customAlertButton {
     padding: 5px 15px;
   }
-  
-  </style>
+</style> -->
 
 
 <table class="table table-bordered">
@@ -100,25 +100,25 @@
     </tr>
   </thead>
   <tbody id="table_body">
-    
+
   </tbody>
 </table>
 
 <script>
-  fetch('http://localhost:3000/plasmaLinksData').then((data)=>{
-      return data.json();
-  }).then((objectData)=>{
-      console.log(objectData[0].name);
+  fetch('http://localhost:3000/plasmaLinksData').then((data) => {
+    return data.json();
+  }).then((objectData) => {
+    console.log(objectData[0].name);
 
-      let tableData = "";
-      objectData.map((values)=>{
-          tableData+=`<tr>
+    let tableData = "";
+    objectData.map((values) => {
+      tableData += `<tr>
       <td>${values.name}</td>
       <td>${values.phoneNo}</td>
       <td>${values.location}</td>
       <td>${values.DistrictName}</td>
     </tr>`;
-      });
-      document.getElementById('table_body').innerHTML=tableData;
+    });
+    document.getElementById('table_body').innerHTML = tableData;
   })
 </script>
