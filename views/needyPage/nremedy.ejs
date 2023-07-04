@@ -1,0 +1,100 @@
+<% layout('layouts/boilerplate') %>
+
+
+    <head>
+        <title>Insights Card</title>
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background-color: #f2f2f2;
+                font-family: Arial, sans-serif;
+            }
+
+            .card {
+                width: 400px;
+                padding: 20px;
+                background-color: #fff;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+            }
+
+            .insights {
+                margin-bottom: 20px;
+            }
+
+            .refresh-button {
+                display: block;
+                margin: 0 auto;
+                padding: 10px 20px;
+                background-color: #4CAF50;
+                color: #fff;
+                border: none;
+                border-radius: 4px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+
+            .loading {
+                text-align: center;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="card">
+            <div class="loading" id="loading">Loading...</div>
+            <div class="insights" id="insights" style="display: none">
+                <!-- Insights data will be dynamically added here -->
+            </div>
+            <button class="refresh-button" onclick="refreshInsights()">Refresh</button>
+        </div>
+
+        <script>
+            var insightsData = []; // Array to store the fetched insights
+            var insightsIndex = 0; // Index to track the currently displayed insight
+
+            // Function to fetch data from API
+            function fetchData() {
+                var loadingElement = document.getElementById("loading");
+                var insightsElement = document.getElementById("insights");
+
+                loadingElement.style.display = "block";
+                insightsElement.style.display = "none";
+
+                fetch("https://script.googleusercontent.com/macros/echo?user_content_key=NALgeNRm3LxzOK4mVcv9zmIuUl8NXjcbPUicLUPEldmUmz-fWh8SSYHM81DOOSm6jdG_pY19yKmmXjIkc7DGESPGHPfQQtdSm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnOCfAlPAzegBfwnZpRLsI7DUWZaJO7wgMgXh3kUXxBaEuu9L76dBPKxqf-akxkIRPR1meIH045DlEtaGFb7TpCS1x-ehTngB3Q&lib=MV0UOj508p8WBTNeDLjP7hPSAmiWWKILr")
+                    .then(response => response.json())
+                    .then(data => {
+                        insightsData = data.data;
+                        refreshInsights();
+
+                        loadingElement.style.display = "none";
+                        insightsElement.style.display = "block";
+                    })
+                    .catch(error => {
+                        console.error("Error fetching data:", error);
+                        loadingElement.textContent = "Error loading data.";
+                    });
+            }
+
+            // Function to refresh insights and update the card
+            function refreshInsights() {
+                var insightsElement = document.getElementById("insights");
+
+                if (insightsData.length > 0) {
+                    // Display the current insight
+                    insightsElement.textContent = insightsData[insightsIndex].Insights;
+
+                    // Increment the index or reset to 0 if the end of insightsData is reached
+                    insightsIndex = (insightsIndex + 1) % insightsData.length;
+                } else {
+                    insightsElement.textContent = "No insights available.";
+                }
+            }
+
+            // Initial load
+            fetchData();
+        </script>
+    </body>

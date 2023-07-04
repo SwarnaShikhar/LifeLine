@@ -13,11 +13,11 @@ module.exports.validatePlasmaLink = (req, res, next) => {
     const plasmaLinkSchema = Joi.object({
         plasmaLink: Joi.object({
             name: Joi.string().min(3).max(30).required(),
-            age: Joi.number().required().min(1).required(),
+            age: Joi.string().required().min(1).required(),
             location:Joi.string().alphanum().min(5).required(),
             bloodGroup:Joi.string().required(),
-            phoneNo:Joi.number().min(10).required(),
-            AadharNo:Joi.number().min(12).required(),
+            phoneNo:Joi.string().min(10).required(),
+            AadharNo:Joi.string().min(12).required(),
             DistrictName:Joi.string().required()
         }).required()
     })

@@ -21,6 +21,7 @@ const seedDB = async () => {
         const random20 = Math.floor(Math.random() * 20);
         const pol = new EmergencyPole({
             // author: '644fd46768e3fb06ef84e97c',
+            type:`Feature`,
             name: `${pole[random20].name}`,
             email: `${pole[random20].email}`,
             contactNo: `${pole[random20].contactNo}`,

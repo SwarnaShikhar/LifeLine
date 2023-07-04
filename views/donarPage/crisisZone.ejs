@@ -6,6 +6,46 @@
 
 
     <script>
+
+
+// const datas = {};
+// fetch('http://localhost:3000/plasmaLinks/needy/emergencypoleData')
+//   .then(features => features.json())
+//   .then(objectData => {
+//     datas.features = objectData;
+//     console.log(datas);
+//   })
+//   .catch(error => {
+//     console.error('Error:', error);
+//   });
+
+
+// fetch("https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson")
+//   .then(response => response.json())
+//   .then(data => {
+//     console.log(data); // Process the fetched data here
+//   })
+//   .catch(error => {
+//     console.error("Error fetching data:", error);
+//   });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         mapboxgl.accessToken = 'pk.eyJ1Ijoic3dhcm5hNDAzIiwiYSI6ImNsaHl6Mmh1NjE4bjYzaXFhYTdreDIyZGoifQ.NFzAM7uKPFVOx4LS8Nor0A';
         const map = new mapboxgl.Map({
             container: 'map',
@@ -140,35 +180,35 @@
     </script>
 
 
-<table class="table table-bordered">
-    <thead class="table-dark">
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Email Address</th>
-        <th scope="col">Contact Number</th>
-        <th scope="col">Location</th>
-      </tr>
-    </thead>
-    <tbody id="table_body">
-  
-    </tbody>
-  </table>
-  
-  <script>
-    fetch('http://localhost:3000/plasmaLinks/needy/emergencypoleData').then((data) => {
-      return data.json();
-    }).then((objectData) => {
-      console.log(objectData);
-  
-      let tableData = "";
-      objectData.map((values) => {
-        tableData += `<tr>
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email Address</th>
+                <th scope="col">Contact Number</th>
+                <th scope="col">Location</th>
+            </tr>
+        </thead>
+        <tbody id="table_body">
+
+        </tbody>
+    </table>
+
+    <script>
+        fetch('http://localhost:3000/plasmaLinks/needy/emergencypoleData').then((data) => {
+            return data.json();
+        }).then((objectData) => {
+            //   console.log(objectData);
+
+            let tableData = "";
+            objectData.map((values) => {
+                tableData += `<tr>
         <td>${values.name}</td>
         <td>${values.email}</td>
         <td>${values.contactNo}</td>
         <td>${values.location}</td>
       </tr>`;
-      });
-      document.getElementById('table_body').innerHTML = tableData;
-    })
-  </script>
+            });
+            document.getElementById('table_body').innerHTML = tableData;
+        })
+    </script>

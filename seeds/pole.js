@@ -1,5 +1,6 @@
 module.exports = [
     {
+        "type": "Feature",
         "name": "John Doe",
         "email": "johndoe@example.com",
         "contactNo": 1234567890,
@@ -14,6 +15,7 @@ module.exports = [
         "needFor": "other"
     },
     {
+        "type": "Feature",
         "name": "Jane Smith",
         "email": "janesmith@example.com",
         "contactNo": 9876543210,
@@ -28,6 +30,7 @@ module.exports = [
         "needFor": "My self"
     },
     {
+        "type": "Feature",
         "name": "Michael Johnson",
         "email": "michaeljohnson@example.com",
         "contactNo": 5555555555,
@@ -42,6 +45,7 @@ module.exports = [
         "needFor": "other"
     },
     {
+        "type": "Feature",
         "name": "Emily Brown",
         "email": "emilybrown@example.com",
         "contactNo": 1111111111,
@@ -56,6 +60,7 @@ module.exports = [
         "needFor": "My self"
     },
     {
+        "type": "Feature",
         "name": "Daniel Wilson",
         "email": "danielwilson@example.com",
         "contactNo": 9999999999,
@@ -70,6 +75,7 @@ module.exports = [
         "needFor": "other"
     },
     {
+        "type": "Feature",
         "name": "Sophia Taylor",
         "email": "sophiataylor@example.com",
         "contactNo": 4444444444,
@@ -84,6 +90,7 @@ module.exports = [
         "needFor": "My self"
     },
     {
+        "type": "Feature",
         "name": "Oliver Turner",
         "email": "oliverturner@example.com",
         "contactNo": 7777777777,
@@ -98,6 +105,7 @@ module.exports = [
         "needFor": "other"
     },
     {
+        "type": "Feature",
         "name": "Ava Green",
         "email": "avagreen@example.com",
         "contactNo": 2222222222,
@@ -112,6 +120,7 @@ module.exports = [
         "needFor": "My self"
     },
     {
+        "type": "Feature",
         "name": "Noah Hughes",
         "email": "noahhughes@example.com",
         "contactNo": 6666666666,
@@ -126,6 +135,7 @@ module.exports = [
         "needFor": "other"
     },
     {
+        "type": "Feature",
         "name": "Mia Johnson",
         "email": "miajohnson@example.com",
         "contactNo": 5554443333,
@@ -140,6 +150,7 @@ module.exports = [
         "needFor": "My self"
     },
     {
+        "type": "Feature",
         "name": "John Doe",
         "email": "johndoe@example.com",
         "contactNo": 1234567890,
@@ -154,6 +165,7 @@ module.exports = [
         "needFor": "other"
     },
     {
+        "type": "Feature",
         "name": "Jane Smith",
         "email": "janesmith@example.com",
         "contactNo": 9876543210,
@@ -168,6 +180,7 @@ module.exports = [
         "needFor": "My self"
     },
     {
+        "type": "Feature",
         "name": "David Johnson",
         "email": "davidjohnson@example.com",
         "contactNo": 4567891230,
@@ -182,6 +195,7 @@ module.exports = [
         "needFor": "My family"
     },
     {
+        "type": "Feature",
         "name": "Emily Brown",
         "email": "emilybrown@example.com",
         "contactNo": 9870123456,
@@ -196,6 +210,7 @@ module.exports = [
         "needFor": "other"
     },
     {
+        "type": "Feature",
         "name": "Michael Wilson",
         "email": "michaelwilson@example.com",
         "contactNo": 7890123456,
@@ -210,6 +225,7 @@ module.exports = [
         "needFor": "My self"
     },
     {
+        "type": "Feature",
         "name": "Sophia Davis",
         "email": "sophiadavis@example.com",
         "contactNo": 2345678901,
@@ -224,6 +240,7 @@ module.exports = [
         "needFor": "My child"
     },
     {
+        "type": "Feature",
         "name": "Daniel Taylor",
         "email": "danieltaylor@example.com",
         "contactNo": 8901234567,
@@ -238,6 +255,7 @@ module.exports = [
         "needFor": "other"
     },
     {
+        "type": "Feature",
         "name": "Olivia Wilson",
         "email": "oliviawilson@example.com",
         "contactNo": 5678901234,
@@ -252,6 +270,7 @@ module.exports = [
         "needFor": "My self"
     },
     {
+        "type": "Feature",
         "name": "William Johnson",
         "email": "williamjohnson@example.com",
         "contactNo": 9012345678,
@@ -266,6 +285,7 @@ module.exports = [
         "needFor": "other"
     },
     {
+        "type": "Feature",
         "name": "Ava Miller",
         "email": "avamiller@example.com",
         "contactNo": 3456789012,

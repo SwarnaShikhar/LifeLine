@@ -70,7 +70,8 @@ router.get('/plasmaLinks/donar/crisis', (req, res) => {
     res.render('donarPage/crisisZone')
 })
 
-router.get('/plasmaLinks/donar/remedy', (req, res) => {
+
+router.get('/plasmaLinks/donar/dremedy', (req, res) => {
     res.render('donarPage/remedy')
 })
 
@@ -160,8 +161,8 @@ router.get('/plasmaLinks/needy/groupFinder', (req, res) => {
     res.render('needyPage/groupFinder')
 })
 
-router.get('/plasmaLinks/needy/remedy', (req, res) => {
-    res.render('needyPage/remedy')
+router.get('/plasmaLinks/needy/nremedy', (req, res) => {
+    res.render('needyPage/nremedy')
 })
 
 // End of Needy Page Routes
@@ -218,6 +219,3 @@ router.use((err, req, res, next) => {
 
 
 module.exports = router;
-
-
-// Have to handle Errors

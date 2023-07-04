@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const donarDriveSchema = new Schema({
     name:String,
     conductedBy:String,
-    contactNo:Number,
+    contactNo:String,
     date:{
         type:Date,
         default:Date.now()
@@ -12,7 +12,7 @@ const donarDriveSchema = new Schema({
     location:String,
     district:String,
     supportedMedicalTeam:String,
-    contactNoMedicalTeam:Number,
+    contactNoMedicalTeam:String,
     description:String,
     author:{
         type:Schema.Types.ObjectId,
